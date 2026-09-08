@@ -132,10 +132,40 @@ pub async fn skip_to_selected(app: &mut App) -> Option<Message> {
     None
 }
 
-pub async fn save_as_playlist(app: &mut App) -> Option<Message> {
+pub async fn save_current_as_playlist(app: &mut App) -> Option<Message> {
     if !app.queue.is_empty() {
         let index = app.playlist_ctl.create_playlist();
         let playlist = app.playlist_ctl.playlist_coll.get_playlist(index).unwrap();
+        if let Some(current_track) = app.player.current.as_mut() {
+            playlist
+                .mini_tracks
+                .push(Rc::new(RefCell::new(MiniTrack::new(
+                    &current_track.real_path,
+                ))));
+            if !playlist.is_empty() {
+                playlist.selected_track = Some(0);
+            }
+        }
+
+        app.queue
+            .tracks
+            .iter()
+            .for_each(|t| playlist.mini_tracks.push(t.clone()));
+        rename_playlist(Some(index), &mut app.playlist_ctl)
+    } else {
+        None
+    }
+}
+
+pub async fn save_full_as_playlist(app: &mut App) -> Option<Message> {
+    if !app.queue.is_empty() {
+        let index = app.playlist_ctl.create_playlist();
+        let playlist = app.playlist_ctl.playlist_coll.get_playlist(index).unwrap();
+        app.player
+            .previous
+            .iter()
+            .for_each(|t| playlist.mini_tracks.push(Rc::new(RefCell::new(MiniTrack::new(&t.to_path_buf())))));
+
         if let Some(current_track) = app.player.current.as_mut() {
             playlist
                 .mini_tracks

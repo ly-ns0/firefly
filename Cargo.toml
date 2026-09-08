@@ -1,6 +1,6 @@
 [package]
 name = "firefly_music"
-version = "0.14.1"
+version = "0.15.0"
 edition = "2024"
 authors = ["lyns0"]
 description = "A Terminal Music Player"

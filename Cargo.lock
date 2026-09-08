@@ -1298,7 +1298,7 @@ checksum = "52051878f80a721bb68ebfbc930e07b65ba72f2da88968ea5c06fd6ca3d3a127"
 
 [[package]]
 name = "firefly_music"
-version = "0.14.1"
+version = "0.15.0"
 dependencies = [
  "axum",
  "clap",

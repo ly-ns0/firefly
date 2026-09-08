@@ -21,6 +21,7 @@ pub async fn update_queue(app: &mut App, msg: QueueMessage) -> Option<Message> {
         QueueMessage::ToggleArrange => toggle_arrange(&mut app.queue),
         QueueMessage::CreatedMiniTrack(mini_track) => queue_mini_track(mini_track, &mut app.queue),
         QueueMessage::SkipToSelected => skip_to_selected(app).await,
-        QueueMessage::SaveAsPlaylist => save_as_playlist(app).await,
+        QueueMessage::SaveCurrentAsPlaylist => save_current_as_playlist(app).await,
+        QueueMessage::SaveFullAsPlaylist => save_full_as_playlist(app).await,
     }
 }

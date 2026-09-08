@@ -17,5 +17,6 @@ pub enum QueueMessage {
     RemoveSelected,
     CreatedMiniTrack(MiniTrack),
     SkipToSelected,
-    SaveAsPlaylist,
+    SaveCurrentAsPlaylist, // Save queue currently visible
+    SaveFullAsPlaylist, // Save all queue tracks whether or not it's already played
 }
