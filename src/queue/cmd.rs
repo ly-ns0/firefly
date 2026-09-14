@@ -151,7 +151,7 @@ pub async fn save_current_as_playlist(app: &mut App) -> Option<Message> {
             .tracks
             .iter()
             .for_each(|t| playlist.mini_tracks.push(t.clone()));
-        rename_playlist(Some(index), &mut app.playlist_ctl)
+        rename_playlist("Name Your Playlist", Some(index), &mut app.playlist_ctl)
     } else {
         None
     }
@@ -181,7 +181,7 @@ pub async fn save_full_as_playlist(app: &mut App) -> Option<Message> {
             .tracks
             .iter()
             .for_each(|t| playlist.mini_tracks.push(t.clone()));
-        rename_playlist(Some(index), &mut app.playlist_ctl)
+        rename_playlist("Name Your Playlist", Some(index), &mut app.playlist_ctl)
     } else {
         None
     }

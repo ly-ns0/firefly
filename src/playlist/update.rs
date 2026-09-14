@@ -16,7 +16,7 @@ pub fn update_playlist(app: &mut App, msg: PlaylistMessage) -> Option<Message> {
             delete_playlist(&mut app.user_confirmation.response, &mut app.playlist_ctl)
         }
         PlaylistMessage::RemoveTrack => remove_selected_track(&mut app.playlist_ctl),
-        PlaylistMessage::Rename => rename_playlist(None, &mut app.playlist_ctl),
+        PlaylistMessage::Rename => rename_playlist("Rename Playlist" ,None, &mut app.playlist_ctl),
         PlaylistMessage::SaveSelected => save_selected_playlist(&mut app.playlist_ctl),
         PlaylistMessage::ToggleArrangeTracks => toggle_arrange(&mut app.playlist_ctl),
         PlaylistMessage::AskToSave(then_call) => ask_to_save(

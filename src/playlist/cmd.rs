@@ -289,6 +289,7 @@ pub fn delete_playlist(
 
 /// Rename selected playlist unless index is specified.
 pub fn rename_playlist(
+    ui_message: &str,
     index: Option<usize>,
     playlist_ctl: &mut PlaylistController,
 ) -> Option<Message> {
@@ -297,7 +298,7 @@ pub fn rename_playlist(
         .filter(|&idx| playlist_ctl.playlist_coll.get_playlist(idx).is_some())
         .map(|index| {
             Message::UserInput(UserInputMessage::EnterEditMode(
-                "Playlist Rename".to_string(),
+                ui_message.to_string(),
                 InputTarget::PlaylistName(index),
             ))
         })
