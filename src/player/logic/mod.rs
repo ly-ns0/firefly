@@ -241,10 +241,10 @@ impl Player {
     }
 
     pub async fn toggle_play(&mut self) -> Result<()> {
-        if self.sink.is_paused() {
-            self.sink.play();
-        } else if self.sink.empty() && self.current.is_some() {
+        if self.sink.empty() && self.current.is_some() {
             self.reload().await?;
+        } else if self.sink.is_paused() {
+            self.sink.play();
         } else {
             self.sink.pause();
         }

@@ -85,8 +85,7 @@ pub async fn tick(app: &mut App) -> Option<Message> {
             && (status == FormatConversion::Done || status == FormatConversion::Unnecessary)
         {
             // When the last track in the queue ends
-            app.player.reload().await.inspect_err(|e| log::error!("Error looping track: {}", e)).ok();
-            app.player.pause().await.inspect_err(|e| log::error!("Error looping track: {}", e)).ok();
+            app.player.pause().await.inspect_err(|e| log::error!("Error pausing track: {}", e)).ok();
         }
 
         // Load first track if no current track and there is something in the queue.
